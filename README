@@ -1,0 +1,5 @@
+```
+git clone https://github.com/chohner/chohner-infra.git
+bash bootstrap_docker.sh
+sudo docker compose up
+```
