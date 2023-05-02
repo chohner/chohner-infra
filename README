@@ -1,7 +1,16 @@
+# Infra for static webhosting & Syncthing instance
+
+## Setup
+
 ```
 git clone https://github.com/chohner/chohner-infra.git
 cd chohner-infra
 bash bootstrap_docker.sh
 cp docker-compose-app.service /etc/systemd/system/
-systemctl enable docker-compose-app
+systemctl enable --now docker-compose-app
 ```
+
+## Gotchas
+
+- `bootstrap_docker.sh` needs manual approval if previously executed
+- docker compose may fail if previous container of same name already exists (check `docker container list --all`)

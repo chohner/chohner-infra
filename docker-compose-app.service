@@ -1,4 +1,5 @@
 # /etc/systemd/system/docker-compose-app.service
+# adapted from https://stackoverflow.com/a/48066454
 
 [Unit]
 Description=Docker Compose Application Service
