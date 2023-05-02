@@ -1,0 +1,47 @@
+---
+version: "2.1"
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: syncthing
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - ./syncthing:/config
+      - /mnt/external_volume/sync:/sync
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    container_name: webserve
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - URL=chohner.com
+      - VALIDATION=http
+      - SUBDOMAINS=www, #optional
+      - EMAIL=mail@chohner.com #optional
+      # - CERTPROVIDER= #optional
+      # - DNSPLUGIN=digitalocean #optional
+      # - PROPAGATION= #optional
+      # - ONLY_SUBDOMAINS=false #optional
+      # - EXTRA_DOMAINS= #optional
+      # - STAGING=false #optional
+    volumes:
+      - ./swap:/config
+      - /mnt/external_volume/www:/config/www
+    ports:
+      - 443:443
+      - 80:80 #optional
+    restart: unless-stopped

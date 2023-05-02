@@ -1,0 +1,4 @@
+# Syncthing
+index-*.db
+*.pem
+csrftokens.txt
