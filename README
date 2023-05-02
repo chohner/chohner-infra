@@ -1,5 +1,7 @@
 ```
 git clone https://github.com/chohner/chohner-infra.git
+cd chohner-infra
 bash bootstrap_docker.sh
-sudo docker compose up
+cp docker-compose-app.service /etc/systemd/system/
+systemctl enable docker-compose-app
 ```
